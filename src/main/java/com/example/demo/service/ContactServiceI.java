@@ -1,8 +1,13 @@
 package com.example.demo.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
+import com.example.demo.model.Contact;
+
 public interface ContactServiceI {
 
+	boolean saveContact(Contact contact);
+	
+	
+	List<Contact> getAllContact();
 }
