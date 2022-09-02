@@ -42,4 +42,14 @@ List<Contact> findAll = contactRepository.findAll();
 		return findById;
 	}
 
+	@Override
+	public boolean updateContact(Contact contact) {
+Contact save = contactRepository.save(contact);
+if(save==null) {
+	return false;
+}else {
+		
+		return true;
+	}
+	}
 }
