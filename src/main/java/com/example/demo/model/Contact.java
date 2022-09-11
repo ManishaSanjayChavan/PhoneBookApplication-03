@@ -48,4 +48,7 @@ public class Contact{
 	@Column(name="UPDATED_DATE",insertable = false)
 	@UpdateTimestamp
 	private LocalDate updatedDate;
-}
+
+		
+	}
+

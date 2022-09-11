@@ -1,7 +1,10 @@
 package com.example.demo.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +32,13 @@ return false;
 
 	@Override
 	public List<Contact> getAllContact() {
-List<Contact> findAll = contactRepository.findAll();
+List<Contact> contacts = contactRepository.findAll();
+		Stream<Contact> stream = contacts.stream();
+		Stream<Contact> filter = stream.filter(contact -> contact.getActiveSwitch() =='c');;
+		 
+		List<Contact> collect = filter.collect(Collectors.toList());
 		
-		
-		return findAll;
+		return collect;
 	}
 
 
@@ -80,15 +86,14 @@ if(save==null) {
 
 	
 
-Optional <Contact>	findById = contactRepository.findById(cid);
+Optional <Contact>	contact = contactRepository.findById(cid);
 	
-	if(findById.isPresent()) {
-	
-	contactRepository.deleteById(cid);
+	if(contact.isPresent()) {
+	Contact contact2=contact.get();
+	contact2.setActiveSwitch('M');
+	contactRepository.save(contact2);
 	return true;
 	}else {
 		return false;
 	}
 }}
-
-
